@@ -1,0 +1,128 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  text-align: center;
+  background: #f0f0f0;
+}
+
+h1 {
+  margin: 10px;
+}
+
+#map {
+  height: 80vh;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* 🔍 Хайлтын хэсэг */
+#search-box {
+  position: relative; /* close товчны байрлалыг харгалзан */
+  width: 300px;       /* хүссэн өргөн */
+  margin: 10px auto;  /* төвлөрүүлэх */
+  padding: 10px 40px 10px 10px; /* баруун талд close товчны зай гаргах */
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+/* Close товчийг #search-box дотор баруун дээд буланд байрлуулах */
+#close-search {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+
+#search-input {
+  width: 200px;
+  padding: 5px;
+}
+
+/* 🧾 Түүх */
+#history-box {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 220px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  z-index: 1000;
+  text-align: left;
+}
+
+#history-box ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+#history-box li {
+  cursor: pointer;
+  color: #0077cc;
+}
+
+#history-box li:hover {
+  text-decoration: underline;
+}
+
+/* 📸 Popup form */
+#popup-form {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 20px 20px 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  z-index: 1001;
+  width: 250px;
+}
+
+#popup-form textarea {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+  resize: vertical;
+}
+
+#close-form {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+
+#popup-form.hidden {
+  display: none;
+}
+
+#popup-form input {
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 5px;
+}

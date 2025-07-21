@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <title>Миний Аялах Газрууд</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+  <h1>🗺️ Миний Аялах Газрууд</h1>
+
+  <!-- 🔍 Хайлт -->
+  <div id="search-box">
+
+    <input type="text" id="search-input" placeholder="Газрын нэр хайх (ж.н. Тэрэлж)">
+    <button onclick="searchLocation()">Хайх</button>
+  </div>
+
+  <!-- 🧾 Түүх -->
+  <div id="history-box">
+    <h3>🔁 Хайсан газрууд:</h3>
+    <ul id="search-history"></ul>
+  </div>
+
+  <!-- 📍 Газрын зураг -->
+  <div id="map"></div>
+
+  <!-- 📸 Газрын зураг дээр marker оруулах form -->
+  <div id="popup-form" class="hidden">
+    <button id="close-form">❌</button> <!-- 👈 Close button -->
+    <input type="text" id="place-name" placeholder="Газрын нэр">
+    <input type="file" id="place-image" accept="image/*">
+    <textarea id="place-comment" placeholder="Тайлбар эсвэл сэтгэгдэл бичнэ үү" rows="3"></textarea>
+    <button onclick="submitPlace()">Хадгалах</button>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
