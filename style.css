@@ -1,104 +1,241 @@
-body {
-  margin: 0;
-  font-family: sans-serif;
-  text-align: center;
-  background: #f0f0f0;
+/* =======================
+   Үндсэн өнгө, фонт
+======================= */
+:root {
+  --text: #222;
+  --brand: #0077cc;
+  --muted: #666;
+  --panel: #ffffff;
+  --shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
-h1 {
-  margin: 10px;
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #f9f9f9;
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP", "Noto Sans Mongolian", sans-serif;
+}
+
+/* =======================
+   🗺️ Hero хэсэг (гарчиг + хэл + хайлт)
+======================= */
+/* =======================
+   🗺️ Hero хэсэг (гарчиг + хэл + хайлт)
+======================= */
+#hero {
+  position: relative;
+  width: 100vw; /* дэлгэцийн бүрэн өргөн */
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+
+  padding: 40px 16px 30px;
+  border-radius: 0;
+  overflow: hidden;
+  background: url("images/travel-bg.jpg") center center / cover no-repeat fixed;
+  box-shadow: inset 0 -2px 8px rgba(0,0,0,0.1);
+}
+
+/* ✨ Хөдөлгөөнт гэрлийн gradient давхарга */
+#hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-45deg,
+              rgba(255,255,255,0.55),
+              rgba(240,250,255,0.45),
+              rgba(255,255,255,0.55));
+  background-size: 200% 200%;
+  animation: heroGlow 12s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes heroGlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Гарчиг ба бусад элементүүд */
+#hero h1 {
+  margin: 0 0 10px;
+  text-align: center;
+  color: #1f2937;
+  text-shadow: 0 1px 0 rgba(255,255,255,.6);
+  position: relative;
+  z-index: 1;
+}
+
+/* хэл сонгох болон хайлт hero background дотор байна */
+#lang-box, #search-box {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* =======================
+   🌐 Хэл сонгох хэсэг
+======================= */
+#lang-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: var(--muted);
+  position: relative;
+  z-index: 1;
+}
+
+#lang-box select {
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #fff;
+}
+
+/* =======================
+   🔍 Хайлт хэсэг
+======================= */
+#search-box {
+  display: flex;
+  gap: 8px;
+  width: 320px;
+  margin: 10px auto;
+  background: var(--panel);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  position: relative;
+  z-index: 1;
+}
+
+#search-input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+#search-box button {
+  padding: 8px 14px;
+  background: var(--brand);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+#search-box button:hover {
+  opacity: 0.9;
+}
+
+/* =======================
+   🗺️ Газрын зураг
+======================= */
+#map-wrap {
+  position: relative;
 }
 
 #map {
-  height: 80vh;
+  height: calc(100vh - 210px);
   width: 100%;
-  margin-top: 10px;
+  position: relative;
+  z-index: 0;
+  background: #e9eef3;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-/* 🔍 Хайлтын хэсэг */
-#search-box {
-  position: relative; /* close товчны байрлалыг харгалзан */
-  width: 300px;       /* хүссэн өргөн */
-  margin: 10px auto;  /* төвлөрүүлэх */
-  padding: 10px 40px 10px 10px; /* баруун талд close товчны зай гаргах */
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
-
-/* Close товчийг #search-box дотор баруун дээд буланд байрлуулах */
-#close-search {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: transparent;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  padding: 0;
-  line-height: 1;
-}
-
-
-#search-input {
-  width: 200px;
-  padding: 5px;
-}
-
-/* 🧾 Түүх */
+/* =======================
+   🧾 Түүх — газрын зурагны зүүн доод буланд
+======================= */
 #history-box {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background: white;
-  padding: 10px;
+  left: 12px;
+  bottom: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 10px 12px;
   border-radius: 10px;
-  max-height: 200px;
+  width: 240px;
+  max-height: 220px;
   overflow-y: auto;
-  width: 220px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-  z-index: 1000;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
   text-align: left;
 }
 
+#history-box h3 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
 #history-box ul {
-  padding-left: 20px;
+  list-style: none;
+  padding: 0;
   margin: 0;
 }
 
 #history-box li {
   cursor: pointer;
-  color: #0077cc;
+  color: var(--brand);
+  margin: 4px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #history-box li:hover {
   text-decoration: underline;
 }
 
-/* 📸 Popup form */
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: #e32636;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+/* =======================
+   💬 Popup form
+======================= */
 #popup-form {
   position: absolute;
   top: 20%;
   left: 50%;
   transform: translateX(-50%);
-  background: white;
-  padding: 20px 20px 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  border-radius: 10px;
+  background: var(--panel);
+  padding: 20px 20px 12px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  width: 280px;
   z-index: 1001;
-  width: 250px;
 }
 
+#popup-form.hidden {
+  display: none;
+}
+
+#popup-form input,
 #popup-form textarea {
   width: 100%;
-  padding: 5px;
+  padding: 8px;
   margin-bottom: 10px;
-  resize: vertical;
+  border-radius: 8px;
+  border: 1px solid #e2e2e2;
 }
 
 #close-form {
   position: absolute;
-  top: 5px;
+  top: 6px;
   right: 8px;
   background: transparent;
   border: none;
@@ -106,23 +243,23 @@ h1 {
   cursor: pointer;
 }
 
-.delete-btn {
-  background: transparent;
-  border: none;
-  color: red;
-  cursor: pointer;
-  font-size: 14px;
-  margin-left: 10px;
-}
+/* =======================
+   📱 Responsive
+======================= */
+@media (max-width: 600px) {
+  #history-box {
+    width: 200px;
+    max-height: 180px;
+    left: 8px;
+    bottom: 8px;
+  }
 
+  #map {
+    height: calc(100vh - 240px);
+  }
 
-#popup-form.hidden {
-  display: none;
-}
-
-#popup-form input {
-  display: block;
-  margin-bottom: 10px;
-  width: 100%;
-  padding: 5px;
+  #hero {
+    border-radius: 10px;
+    padding: 20px 12px 14px;
+  }
 }
