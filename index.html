@@ -1,40 +1,56 @@
 <!DOCTYPE html>
 <html lang="mn">
 <head>
-  <meta charset="UTF-8">
-  <title>Миний Аялах Газрууд</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Миний Аялах Газрууд</title>
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
+<section id="hero">
   <h1>🗺️ Миний Аялах Газрууд</h1>
+
+  <!-- 言語切替 -->
+  <div id="lang-box">
+    <label for="lang-select">Language / Хэл:</label>
+    <select id="lang-select">
+      <option value="mn">Монгол</option>
+      <option value="ja">日本語</option>
+    </select>
+  </div>
 
   <!-- 🔍 Хайлт -->
   <div id="search-box">
-
-    <input type="text" id="search-input" placeholder="Газрын нэр хайх (ж.н. Тэрэлж)">
+    <input type="text" id="search-input" placeholder="Газрын нэр хайх (ж.н. Тэрэлж)" />
     <button onclick="searchLocation()">Хайх</button>
   </div>
+</section>
 
-  <!-- 🧾 Түүх -->
+<!-- 📍 地図＋履歴を同じラッパーに -->
+<div id="map-wrap">
+  <div id="map"></div>
+
+  <!-- 🧾 Түүх（ここを地図の左下に重ねる） -->
   <div id="history-box">
     <h3>🔁 Хайсан газрууд:</h3>
     <ul id="search-history"></ul>
   </div>
+</div>
 
-  <!-- 📍 Газрын зураг -->
-  <div id="map"></div>
+<!-- 📸 Газрын зураг дээр marker оруулах form -->
+<div id="popup-form" class="hidden" role="dialog" aria-modal="true">
+<button id="close-form" aria-label="Close">❌</button>
+<input type="text" id="place-name" placeholder="Газрын нэр" />
+<input type="file" id="place-image" accept="image/*" />
+<textarea id="place-comment" placeholder="Тайлбар эсвэл сэтгэгдэл бичнэ үү" rows="3"></textarea>
+<button id="submit-place" onclick="submitPlace()">Хадгалах</button>
+</div>
 
-  <!-- 📸 Газрын зураг дээр marker оруулах form -->
-  <div id="popup-form" class="hidden">
-    <button id="close-form">❌</button> <!-- 👈 Close button -->
-    <input type="text" id="place-name" placeholder="Газрын нэр">
-    <input type="file" id="place-image" accept="image/*">
-    <textarea id="place-comment" placeholder="Тайлбар эсвэл сэтгэгдэл бичнэ үү" rows="3"></textarea>
-    <button onclick="submitPlace()">Хадгалах</button>
-  </div>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="app.js"></script>
+<!-- Scripts: 順番に注意 -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
